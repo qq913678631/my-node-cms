@@ -1,6 +1,13 @@
 const commentService = require('../services/comment.service')
 
 class commentMiddleware {
+  async getCommentList (ctx, next) {
+    const { momentId } = ctx.request.query
+
+    const res = await commentService.getCommentList(momentId)
+    ctx.body = res
+  }
+
   async create (ctx, next) {
     const { momentId, content } = ctx.request.body
     const { id } = ctx.user

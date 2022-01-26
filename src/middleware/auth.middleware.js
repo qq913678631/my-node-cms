@@ -63,9 +63,11 @@ const verifyPermission = (tableName) => {
     // 1.获取查询参数
     const resourceId = Object.values(ctx.params)[0]
     const { id } = ctx.user
-  
+
+    console.log('%c█🚀🚀🚀   () -> :', 'color: #3ba776', resourceId, id)
     // 2.查看是否有操作权限
     const isPremission = await authService.checkResource(tableName, resourceId, id)
+    console.log('%c█🚀🚀🚀   () -> :', 'color: #3ba776', isPremission)
     if (!isPremission) {
       const error = new Error(UNPREMISSION)
       return ctx.app.emit('error', error, ctx)
